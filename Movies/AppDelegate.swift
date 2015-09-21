@@ -13,9 +13,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    // Override point for customization after application launch.
+    let tabBarController = window?.rootViewController as! UITabBarController
+    
+    let boxOfficeNVC = tabBarController.viewControllers![0] as! UINavigationController
+    let boxOfficeVC = boxOfficeNVC.viewControllers[0] as! MovieListViewController
+    boxOfficeVC.dataURL = NSURL(string: "https://gist.githubusercontent.com/timothy1ee/d1778ca5b944ed974db0/raw/489d812c7ceeec0ac15ab77bf7c47849f2d1eb2b/gistfile1.json")
+    
+    let dvdNVC = tabBarController.viewControllers![1] as! UINavigationController
+    let dvdVC = dvdNVC.viewControllers[0] as! MovieListViewController
+    dvdVC.dataURL = NSURL(string: "https://gist.githubusercontent.com/timothy1ee/e41513a57049e21bc6cf/raw/b490e79be2d21818f28614ec933d5d8f467f0a66/gistfile1.json")
+  
     return true
   }
 
@@ -39,6 +47,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func applicationWillTerminate(application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+  }
+  
+  
+  // Only support Portrait mode
+  func application(application: UIApplication, supportedInterfaceOrientationsForWindow window: UIWindow?) -> UIInterfaceOrientationMask {
+    return UIInterfaceOrientationMask.Portrait
   }
 
 
